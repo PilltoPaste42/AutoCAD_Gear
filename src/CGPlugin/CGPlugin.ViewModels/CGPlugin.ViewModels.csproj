@@ -6,4 +6,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CGPlugin.Models\CGPlugin.Models.csproj" />
+  </ItemGroup>
+
 </Project>
