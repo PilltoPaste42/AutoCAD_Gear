@@ -3,8 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:CGPlugin.ViewModels;assembly=CGPlugin.ViewModels"
+
         mc:Ignorable="d"
         Title="Citroen Gear" Height="230" Width="270" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewModels:CitroenGearVM />
+    </Window.DataContext>
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -32,7 +37,9 @@
             <TextBox x:Name="GearWidth"
                      Grid.Row="0"
                      Grid.Column="1"
-                     VerticalAlignment="Center" Height="18" />
+                     VerticalAlignment="Center"
+                     Height="18"
+                     Text="{Binding GearWidth, ValidatesOnExceptions=True}" />
             <Label Content="Gear diameter (mm): "
                    Grid.Column="0"
                    Grid.Row="1"
@@ -41,7 +48,8 @@
             <TextBox x:Name="GearDiameter"
                      Grid.Column="1"
                      Grid.Row="1"
-                     VerticalAlignment="Center" Height="18" />
+                     VerticalAlignment="Center" Height="18"
+                     Text="{Binding GearDiameter, ValidatesOnExceptions=True}" />
             <Label Content="Teeth count: "
                    Grid.Column="0"
                    Grid.Row="2"
@@ -50,16 +58,18 @@
             <TextBox x:Name="GearTeethCount"
                      Grid.Column="1"
                      Grid.Row="2"
-                     VerticalAlignment="Center" Height="18" />
+                     VerticalAlignment="Center" Height="18"
+                     Text="{Binding GearTeethCount, ValidatesOnExceptions=True}" />
             <Label Content="Teeth angle (degree): "
                    Grid.Column="0"
                    Grid.Row="3"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center" />
-            <TextBox x:Name="GearToothAngle"
+            <TextBox x:Name="GearTeethAngle"
                      Grid.Column="1"
                      Grid.Row="3"
-                     VerticalAlignment="Center" Height="18" />
+                     VerticalAlignment="Center" Height="18"
+                     Text="{Binding GearTeethAngle, ValidatesOnExceptions=True}" />
             <Label Content="Gear module (mm): "
                    Grid.Column="0"
                    Grid.Row="4"
@@ -68,7 +78,8 @@
             <TextBox x:Name="GearModule"
                      Grid.Column="1"
                      Grid.Row="4"
-                     VerticalAlignment="Center" Height="18" />
+                     VerticalAlignment="Center" Height="18"
+                     Text="{Binding GearModule, ValidatesOnExceptions=True}" />
 
         </Grid>
 
