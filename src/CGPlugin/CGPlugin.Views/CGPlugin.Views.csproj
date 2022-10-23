@@ -8,7 +8,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="CitroenGearExample.png" />
+    <None Remove="resources\CitroenGearExample.png" />
+    <None Remove="resources\favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="resources\favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CGPlugin.ViewModels\CGPlugin.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="resources\CitroenGearExample.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
