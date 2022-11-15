@@ -10,13 +10,6 @@
   <ItemGroup>
     <None Remove="CitroenGearExample.png" />
     <None Remove="resources\CitroenGearExample.png" />
-    <None Remove="resources\favicon.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="resources\favicon.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
   <ItemGroup>
