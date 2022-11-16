@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:CGPlugin.ViewModels;assembly=CGPlugin.ViewModels"
-
         mc:Ignorable="d"
-        Title="Citroen Gear" Height="250" Width="390" ResizeMode="NoResize">
+        
+        Title="Citroen Gear" 
+        Height="270" Width="450" 
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
     <Window.DataContext>
         <viewModels:CitroenGearVM />
     </Window.DataContext>
@@ -45,7 +48,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="7*" />
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
 
