@@ -1,5 +1,6 @@
 ﻿namespace CGPlugin.ViewModels;
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,6 +8,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 using CGPlugin.Models;
+
+using CommunityToolkit.Mvvm.Input;
 
 /// <summary>
 ///   ViewModel для работы с данными из MainWindow
@@ -20,7 +23,12 @@ public class CitroenGearVM : ValidationBase
     {
         _gear = new CitroenGearModel();
         _validationErrors = new Dictionary<string, ICollection<string>>();
+
+        BuildGearCommand = new RelayCommand(BuildCitroenGear, () => ModelIsValid);
+        SetDefaultGearCommand = new RelayCommand(SetDefaultGear);
     }
+
+    public RelayCommand BuildGearCommand { get; }
 
     public uint Diameter
     {
@@ -36,7 +44,10 @@ public class CitroenGearVM : ValidationBase
         }
     }
 
-    public override bool HasErrors => _validationErrors.Count > 0;
+    private uint GetModule => Diameter / (TeethCount + 2);
+
+    public override bool HasErrors => !ModelIsValid;
+    public bool ModelIsValid { get; private set; }
 
     public uint Module
     {
@@ -48,6 +59,8 @@ public class CitroenGearVM : ValidationBase
             OnPropertyChanged();
         }
     }
+
+    public RelayCommand SetDefaultGearCommand { get; }
 
     public int TeethAngle
     {
@@ -95,8 +108,6 @@ public class CitroenGearVM : ValidationBase
         return _validationErrors[propertyName];
     }
 
-    private uint GetModule => (Diameter) / (TeethCount + 2);
-
     protected void ValidateModelProperty(object value, [CallerMemberName] string propertyName = "")
     {
         if (_validationErrors.ContainsKey(propertyName))
@@ -118,6 +129,24 @@ public class CitroenGearVM : ValidationBase
             }
         }
 
+        ModelIsValid = _validationErrors.Count == 0;
+
         OnErrorsChanged(propertyName);
+        BuildGearCommand.NotifyCanExecuteChanged();
+    }
+
+    private void BuildCitroenGear()
+    {
+        // Call builder here
+        throw new NotImplementedException();
+    }
+
+    private void SetDefaultGear()
+    {
+        Diameter = 220;
+        Module = 10;
+        TeethAngle = 25;
+        TeethCount = 20;
+        Width = 50;
     }
 }

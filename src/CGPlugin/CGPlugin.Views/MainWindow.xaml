@@ -134,10 +134,12 @@
             <Button x:Name="DefaultButton"
                     Content="Default"
                     Width="75"
-                    Margin="0 0 10 0" />
+                    Margin="0 0 10 0" 
+                    Command="{Binding SetDefaultGearCommand}"/>
             <Button x:Name="BuildButton"
                     Content="Build"
-                    Width="75" />
+                    Width="75" 
+                    Command="{Binding BuildGearCommand}"/>
 
         </WrapPanel>
     </Grid>
