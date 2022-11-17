@@ -6,25 +6,15 @@
         xmlns:viewModels="clr-namespace:CGPlugin.ViewModels;assembly=CGPlugin.ViewModels"
         mc:Ignorable="d"
         
-        Title="Citroen Gear" 
+        Title="Citroen Gear"
+        Icon="{StaticResource MainIcon}"
         Height="270" Width="450" 
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner">
+
     <Window.DataContext>
         <viewModels:CitroenGearVM />
     </Window.DataContext>
-
-    <Window.Resources>
-        <Style x:Key="TextErrorStyle" TargetType="{x:Type TextBox}">
-            <Style.Triggers>
-                <Trigger Property="Validation.HasError" Value="True">
-                    <Setter Property="ToolTip"
-                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
-                            Path=(Validation.Errors)[0].ErrorContent}" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
 
     <Grid Margin="5">
         <Grid.RowDefinitions>
@@ -62,10 +52,10 @@
                      Grid.Column="1"
                      VerticalAlignment="Center"
                      Height="18"
-                     Style="{StaticResource TextErrorStyle}"
                      Text="{Binding Width, 
                             UpdateSourceTrigger=PropertyChanged, 
-                            ValidatesOnNotifyDataErrors=True}" />
+                            ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
             <Label Content="Gear diameter (mm): "
                    Grid.Column="0"
                    Grid.Row="1"
@@ -75,10 +65,10 @@
                      Grid.Column="1"
                      Grid.Row="1"
                      VerticalAlignment="Center" Height="18"
-                     Style="{StaticResource TextErrorStyle}"
                      Text="{Binding Diameter, 
                             UpdateSourceTrigger=PropertyChanged, 
-                            ValidatesOnNotifyDataErrors=True}" />
+                            ValidatesOnNotifyDataErrors=True}" 
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
 
             <Label Content="Teeth count: "
                    Grid.Column="0"
@@ -89,10 +79,10 @@
                      Grid.Column="1"
                      Grid.Row="2"
                      VerticalAlignment="Center" Height="18"
-                     Style="{StaticResource TextErrorStyle}"
                      Text="{Binding TeethCount, 
                             UpdateSourceTrigger=PropertyChanged, 
-                            ValidatesOnNotifyDataErrors=True}" />
+                            ValidatesOnNotifyDataErrors=True}" 
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
             <Label Content="Teeth angle (°): "
                    Grid.Column="0"
                    Grid.Row="3"
@@ -102,10 +92,10 @@
                      Grid.Column="1"
                      Grid.Row="3"
                      VerticalAlignment="Center" Height="18"
-                     Style="{StaticResource TextErrorStyle}"
                      Text="{Binding TeethAngle, 
                             UpdateSourceTrigger=PropertyChanged, 
-                            ValidatesOnNotifyDataErrors=True}" />
+                            ValidatesOnNotifyDataErrors=True}" 
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
             <Label Content="Gear module (mm): "
                    Grid.Column="0"
                    Grid.Row="4"
@@ -115,10 +105,10 @@
                      Grid.Column="1"
                      Grid.Row="4"
                      VerticalAlignment="Center" Height="18"
-                     Style="{StaticResource TextErrorStyle}"
                      Text="{Binding Module, 
                             UpdateSourceTrigger=PropertyChanged, 
-                            ValidatesOnNotifyDataErrors=True}" />
+                            ValidatesOnNotifyDataErrors=True}" 
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
 
         </Grid>
 
@@ -129,7 +119,7 @@
             BorderThickness="1"
             BorderBrush="#FF000000">
             <Image
-                Source="/resources/CitroenGearExample.png"
+                Source="{StaticResource GearImage}"
                 Stretch="Fill" />
         </Border>
 

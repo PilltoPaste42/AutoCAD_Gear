@@ -8,8 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="CitroenGearExample.png" />
-    <None Remove="resources\CitroenGearExample.png" />
+    <None Remove="Resources\CitroenGearExample.png" />
+    <None Remove="Resources\Images\favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,9 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="resources\CitroenGearExample.png">
+    <Resource Include="Resources\Images\CitroenGearExample.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Images\favicon.ico" />
   </ItemGroup>
 
 </Project>
