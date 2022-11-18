@@ -17,8 +17,13 @@ public class ModuleAttribute : ValidationAttribute
         var uintVal = (uint) value;
         var module = gearModel.Diameter / (gearModel.TeethCount + 2);
 
-        if (uintVal == 0 || uintVal != module)
-            return new ValidationResult(ErrorMessage);
+        if (uintVal == 0)
+        {
+            return new ValidationResult($"The field {validationContext.DisplayName} must not be zero.");
+        }
+
+        if (uintVal != module)
+            return new ValidationResult($"The field {validationContext.DisplayName} must be {module}.");
 
         return ValidationResult.Success;
     }
