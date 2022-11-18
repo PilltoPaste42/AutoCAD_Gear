@@ -4,19 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:CGPlugin.ViewModels;assembly=CGPlugin.ViewModels"
-
         mc:Ignorable="d"
-        Title="Citroen Gear" Height="230" Width="270" ResizeMode="NoResize">
+        
+        Title="Citroen Gear"
+        Icon="{StaticResource MainIcon}"
+        Height="270" Width="450" 
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+
     <Window.DataContext>
         <viewModels:CitroenGearVM />
     </Window.DataContext>
+
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid
+            Grid.Column="0"
+            Grid.Row="0"
+            Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -25,7 +38,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="7*" />
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
 
@@ -39,7 +52,10 @@
                      Grid.Column="1"
                      VerticalAlignment="Center"
                      Height="18"
-                     Text="{Binding GearWidth, ValidatesOnExceptions=True}" />
+                     Text="{Binding Width, 
+                            UpdateSourceTrigger=PropertyChanged, 
+                            ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
             <Label Content="Gear diameter (mm): "
                    Grid.Column="0"
                    Grid.Row="1"
@@ -49,7 +65,11 @@
                      Grid.Column="1"
                      Grid.Row="1"
                      VerticalAlignment="Center" Height="18"
-                     Text="{Binding GearDiameter, ValidatesOnExceptions=True}" />
+                     Text="{Binding Diameter, 
+                            UpdateSourceTrigger=PropertyChanged, 
+                            ValidatesOnNotifyDataErrors=True}" 
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
+
             <Label Content="Teeth count: "
                    Grid.Column="0"
                    Grid.Row="2"
@@ -59,8 +79,11 @@
                      Grid.Column="1"
                      Grid.Row="2"
                      VerticalAlignment="Center" Height="18"
-                     Text="{Binding GearTeethCount, ValidatesOnExceptions=True}" />
-            <Label Content="Teeth angle (degree): "
+                     Text="{Binding TeethCount, 
+                            UpdateSourceTrigger=PropertyChanged, 
+                            ValidatesOnNotifyDataErrors=True}" 
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
+            <Label Content="Teeth angle (°): "
                    Grid.Column="0"
                    Grid.Row="3"
                    HorizontalAlignment="Left"
@@ -69,7 +92,10 @@
                      Grid.Column="1"
                      Grid.Row="3"
                      VerticalAlignment="Center" Height="18"
-                     Text="{Binding GearTeethAngle, ValidatesOnExceptions=True}" />
+                     Text="{Binding TeethAngle, 
+                            UpdateSourceTrigger=PropertyChanged, 
+                            ValidatesOnNotifyDataErrors=True}" 
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
             <Label Content="Gear module (mm): "
                    Grid.Column="0"
                    Grid.Row="4"
@@ -79,19 +105,41 @@
                      Grid.Column="1"
                      Grid.Row="4"
                      VerticalAlignment="Center" Height="18"
-                     Text="{Binding GearModule, ValidatesOnExceptions=True}" />
+                     Text="{Binding Module, 
+                            UpdateSourceTrigger=PropertyChanged, 
+                            ValidatesOnNotifyDataErrors=True}" 
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
 
         </Grid>
 
+        <Border
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="4"
+            BorderThickness="1"
+            BorderBrush="#FF000000">
+            <Image
+                Source="{StaticResource GearImage}"
+                Stretch="Fill" />
+        </Border>
+
         <WrapPanel
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
             Grid.Row="1"
             Margin="5"
             HorizontalAlignment="Right"
             VerticalAlignment="Center">
 
+            <Button x:Name="DefaultButton"
+                    Content="Default"
+                    Width="75"
+                    Margin="0 0 10 0" 
+                    Command="{Binding SetDefaultGearCommand}"/>
             <Button x:Name="BuildButton"
                     Content="Build"
-                    Width="75" />
+                    Width="75" 
+                    Command="{Binding BuildGearCommand}"/>
 
         </WrapPanel>
     </Grid>

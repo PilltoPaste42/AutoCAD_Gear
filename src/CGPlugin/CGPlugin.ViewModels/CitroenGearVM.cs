@@ -1,76 +1,150 @@
 ﻿namespace CGPlugin.ViewModels;
 
-using System.ComponentModel;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 using CGPlugin.Models;
 
+using CommunityToolkit.Mvvm.Input;
+
 /// <summary>
-///     ViewModel для работы с данными из MainWindow 
+///   ViewModel для работы с данными из MainWindow
 /// </summary>
-public class CitroenGearVM : INotifyPropertyChanged
+public class CitroenGearVM : ValidationBase
 {
     private readonly CitroenGearModel _gear;
+    private readonly Dictionary<string, ICollection<string>> _validationErrors;
 
     public CitroenGearVM()
     {
         _gear = new CitroenGearModel();
+        _validationErrors = new Dictionary<string, ICollection<string>>();
+
+        BuildGearCommand = new RelayCommand(BuildCitroenGear, () => ModelIsValid);
+        SetDefaultGearCommand = new RelayCommand(SetDefaultGear);
     }
 
-    public uint GearDiameter
+    public RelayCommand BuildGearCommand { get; }
+
+    public uint Diameter
     {
         get => _gear.Diameter;
         set
         {
             _gear.Diameter = value;
+            Module = GetModule;
+            ValidateModelProperty(value);
+            ValidateModelProperty(TeethCount, nameof(TeethCount));
             OnPropertyChanged();
         }
     }
 
-    public uint GearModule
+    private uint GetModule => Diameter / (TeethCount + 2);
+
+    public override bool HasErrors => !ModelIsValid;
+
+    public bool ModelIsValid =>
+        Validator.TryValidateObject(_gear, new ValidationContext(_gear, null, null), null, true);
+
+    public uint Module
     {
         get => _gear.Module;
         set
         {
             _gear.Module = value;
+            ValidateModelProperty(value);
             OnPropertyChanged();
         }
     }
 
-    public int GearTeethAngle
+    public RelayCommand SetDefaultGearCommand { get; }
+
+    public int TeethAngle
     {
         get => _gear.TeethAngle;
         set
         {
             _gear.TeethAngle = value;
+            ValidateModelProperty(value);
             OnPropertyChanged();
         }
     }
 
-    public uint GearTeethCount
+    public uint TeethCount
     {
         get => _gear.TeethCount;
         set
         {
             _gear.TeethCount = value;
+            Module = GetModule;
+            ValidateModelProperty(value);
             OnPropertyChanged();
         }
     }
 
-    public uint GearWidth
+    public uint Width
     {
         get => _gear.Width;
         set
         {
             _gear.Width = value;
+            ValidateModelProperty(value);
             OnPropertyChanged();
         }
     }
 
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    public void OnPropertyChanged([CallerMemberName] string prop = "")
+    public override IEnumerable GetErrors(string? propertyName = "")
     {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        if (string.IsNullOrEmpty(propertyName))
+            return _validationErrors;
+
+        if (!_validationErrors.ContainsKey(propertyName))
+            return Enumerable.Empty<string>();
+
+        return _validationErrors[propertyName];
+    }
+
+    protected void ValidateModelProperty(object value, [CallerMemberName] string propertyName = "")
+    {
+        if (_validationErrors.ContainsKey(propertyName))
+            _validationErrors.Remove(propertyName);
+
+        ICollection<ValidationResult> validationResults = new List<ValidationResult>();
+        var validationContext = new ValidationContext(_gear, null, null)
+        {
+            MemberName = propertyName
+        };
+
+        if (!Validator.TryValidateProperty(value, validationContext, validationResults))
+        {
+            _validationErrors.Add(propertyName, new List<string>());
+            foreach (var validationResult in validationResults.Where(validationResult =>
+                         validationResult.ErrorMessage != null))
+            {
+                _validationErrors[propertyName].Add(validationResult.ErrorMessage);
+            }
+        }
+
+        OnErrorsChanged(propertyName);
+        BuildGearCommand.NotifyCanExecuteChanged();
+    }
+
+    private void BuildCitroenGear()
+    {
+        // Call builder here
+        throw new NotImplementedException();
+    }
+
+    private void SetDefaultGear()
+    {
+        Diameter = 220;
+        Module = 10;
+        TeethAngle = 25;
+        TeethCount = 20;
+        Width = 50;
     }
 }
