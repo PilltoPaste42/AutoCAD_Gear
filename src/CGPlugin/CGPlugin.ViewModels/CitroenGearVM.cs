@@ -39,7 +39,6 @@ public class CitroenGearVM : ValidationBase
             Module = GetModule;
             ValidateModelProperty(value);
             ValidateModelProperty(TeethCount, nameof(TeethCount));
-            ValidateModelProperty(Module, nameof(Module));
             OnPropertyChanged();
         }
     }
@@ -47,7 +46,9 @@ public class CitroenGearVM : ValidationBase
     private uint GetModule => Diameter / (TeethCount + 2);
 
     public override bool HasErrors => !ModelIsValid;
-    public bool ModelIsValid { get; private set; }
+
+    public bool ModelIsValid =>
+        Validator.TryValidateObject(_gear, new ValidationContext(_gear, null, null), null, true);
 
     public uint Module
     {
@@ -81,7 +82,6 @@ public class CitroenGearVM : ValidationBase
             _gear.TeethCount = value;
             Module = GetModule;
             ValidateModelProperty(value);
-            ValidateModelProperty(Module, nameof(Module));
             OnPropertyChanged();
         }
     }
@@ -128,8 +128,6 @@ public class CitroenGearVM : ValidationBase
                 _validationErrors[propertyName].Add(validationResult.ErrorMessage);
             }
         }
-
-        ModelIsValid = _validationErrors.Count == 0;
 
         OnErrorsChanged(propertyName);
         BuildGearCommand.NotifyCanExecuteChanged();

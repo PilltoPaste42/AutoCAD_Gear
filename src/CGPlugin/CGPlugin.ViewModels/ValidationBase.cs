@@ -6,6 +6,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
+/// <summary>
+///     Базовый класс для реализации валидации
+/// </summary>
 public abstract class ValidationBase : INotifyPropertyChanged, INotifyDataErrorInfo
 {
     public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
