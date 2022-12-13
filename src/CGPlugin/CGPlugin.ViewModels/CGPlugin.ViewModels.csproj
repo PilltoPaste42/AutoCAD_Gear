@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CGPlugin.Models\CGPlugin.Models.csproj" />
+    <ProjectReference Include="..\CGPlugin.Services\CGPlugin.Services.csproj" />
   </ItemGroup>
 
 </Project>

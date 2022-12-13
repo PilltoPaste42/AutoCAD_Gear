@@ -8,6 +8,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 using CGPlugin.Models;
+using CGPlugin.Services;
+using CGPlugin.Services.Interfaces;
 
 using CommunityToolkit.Mvvm.Input;
 
@@ -17,12 +19,14 @@ using CommunityToolkit.Mvvm.Input;
 public class CitroenGearVM : ValidationBase
 {
     private readonly CitroenGearModel _gear;
+    private readonly IMessageService _message;
     private readonly Dictionary<string, ICollection<string>> _validationErrors;
 
     public CitroenGearVM()
     {
         _gear = new CitroenGearModel();
         _validationErrors = new Dictionary<string, ICollection<string>>();
+        _message = new DisplayMessageService();
 
         BuildGearCommand = new RelayCommand(BuildCitroenGear, () => ModelIsValid);
         SetDefaultGearCommand = new RelayCommand(SetDefaultGear);
