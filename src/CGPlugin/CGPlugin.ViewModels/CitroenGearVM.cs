@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using CGPlugin.Models;
 using CGPlugin.Services;
 using CGPlugin.Services.Interfaces;
+using CGPlugin.Services.InventorApiService;
 
 using CommunityToolkit.Mvvm.Input;
 
@@ -140,7 +141,10 @@ public class CitroenGearVM : ValidationBase
     private void BuildCitroenGear()
     {
         // Call builder here
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+
+        var inventor = new InventorWrapper();
+
     }
 
     private void SetDefaultGear()
