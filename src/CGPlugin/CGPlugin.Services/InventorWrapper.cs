@@ -1,29 +1,41 @@
-﻿using CGPlugin.Services.Interfaces;
+﻿namespace CGPlugin.Services;
 
-namespace CGPlugin.Services;
+using System;
 
 using Inventor;
 
 /// <summary>
 ///     Сервис для подключения к API Autodesk Inventor
 /// </summary>
-public class InventorWrapper : ICADApiService
+public static class InventorWrapper
 {
-    public InventorWrapper()
+    /// <summary>
+    ///     Получение ссылки на экземпляр приложения Autodesk Inventor
+    /// </summary>
+    /// <returns>
+    ///     Ссылка на экземпляр Inventor.Application
+    /// </returns>
+    /// <exception cref="ApplicationException"></exception>
+    public static Application Connect() 
     {
+        if (_app != null)
+        {
+            return _app;
+        }
+        
         try
         {
             var applicationType = Type.GetTypeFromProgID("Inventor.Application");
 
-            App = (Application)Activator.CreateInstance(applicationType)!;
+            _app = (Application)Activator.CreateInstance(applicationType)!;
         }
         catch (Exception)
         {
-            throw new ApplicationException(@"Error: Failed to start Autodesk Inventor.");
+            throw new ApplicationException(@"Failed to start Autodesk Inventor.");
         }
 
-        App.Visible = true;
+        return _app;
     }
 
-    public Application App { get; }
+    private static Application? _app;
 }
