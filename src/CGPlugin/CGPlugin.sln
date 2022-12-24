@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGPlugin.ViewModels", "CGPl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGPlugin.Services", "CGPlugin.Services\CGPlugin.Services.csproj", "{8885AF35-16FC-404A-9577-C05EC0ECA93E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGPlugin.Common", "CGPlugin.Common\CGPlugin.Common.csproj", "{270C5362-8417-4D7C-B27F-75936A543224}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGPlugin.Common", "CGPlugin.Common\CGPlugin.Common.csproj", "{270C5362-8417-4D7C-B27F-75936A543224}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
