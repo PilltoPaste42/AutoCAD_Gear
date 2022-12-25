@@ -47,7 +47,18 @@ public class CitroenGearVM : ValidationBase
         }
     }
 
-    private uint GetModule => Diameter / (TeethCount + 2);
+    private uint GetModule
+    {
+        get
+        {
+            if (TeethCount == 0)
+            {
+                return 0;
+            }
+
+            return Diameter / TeethCount;
+        }
+    }
 
     public override bool HasErrors => !ModelIsValid;
 
@@ -145,7 +156,7 @@ public class CitroenGearVM : ValidationBase
 
     private void SetDefaultGear()
     {
-        Diameter = 220;
+        Diameter = 200;
         Module = 10;
         TeethAngle = 25;
         TeethCount = 20;
