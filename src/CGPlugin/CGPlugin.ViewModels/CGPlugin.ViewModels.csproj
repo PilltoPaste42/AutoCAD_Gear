@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CGPlugin.Models\CGPlugin.Models.csproj" />
     <ProjectReference Include="..\CGPlugin.Services\CGPlugin.Services.csproj" />
   </ItemGroup>

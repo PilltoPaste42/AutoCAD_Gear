@@ -15,7 +15,12 @@ public class ModuleAttribute : ValidationAttribute
         var gearModel = (CitroenGearModel) validationContext.ObjectInstance;
 
         var uintVal = (uint) value;
-        var module = gearModel.Diameter / (gearModel.TeethCount + 2);
+
+        uint module = 0;
+        if (gearModel.TeethCount != 0)
+        {
+            module = gearModel.Diameter / gearModel.TeethCount;
+        }
 
         if (uintVal == 0)
         {

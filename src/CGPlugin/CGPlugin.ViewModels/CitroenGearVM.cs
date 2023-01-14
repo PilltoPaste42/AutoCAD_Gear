@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 
 using CGPlugin.Models;
 using CGPlugin.Services;
+using CGPlugin.Services.Enums;
 using CGPlugin.Services.Interfaces;
 
 using CommunityToolkit.Mvvm.Input;
@@ -47,7 +48,18 @@ public class CitroenGearVM : ValidationBase
         }
     }
 
-    private uint GetModule => Diameter / (TeethCount + 2);
+    private uint GetModule
+    {
+        get
+        {
+            if (TeethCount == 0)
+            {
+                return 0;
+            }
+
+            return Diameter / TeethCount;
+        }
+    }
 
     public override bool HasErrors => !ModelIsValid;
 
@@ -139,16 +151,34 @@ public class CitroenGearVM : ValidationBase
 
     private void BuildCitroenGear()
     {
-        // Call builder here
-        throw new NotImplementedException();
+        if (HasErrors)
+        {
+            ShowErrorMessage("Gear parameters is not valid!");
+            return;
+        }
+
+        try
+        {
+            new CitroenGearInventorBuilder(_gear).Build();
+        }
+        catch (Exception e)
+        {
+            ShowErrorMessage(e.Message);
+        }
     }
 
     private void SetDefaultGear()
     {
-        Diameter = 220;
+        Diameter = 200;
         Module = 10;
         TeethAngle = 25;
         TeethCount = 20;
         Width = 50;
+    }
+
+    private void ShowErrorMessage(string message)
+    {
+        const string header = "Error";
+        _message.Show(header, message, MessageType.Error);
     }
 }
