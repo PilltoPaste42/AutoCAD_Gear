@@ -115,8 +115,7 @@ public class CitroenGearVM : ValidationBase
 
     public override IEnumerable GetErrors(string? propertyName = "")
     {
-        if (string.IsNullOrEmpty(propertyName))
-            return _validationErrors;
+        if (string.IsNullOrEmpty(propertyName)) return _validationErrors;
 
         if (!_validationErrors.ContainsKey(propertyName))
             return Enumerable.Empty<string>();
