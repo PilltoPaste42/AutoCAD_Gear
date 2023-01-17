@@ -3,9 +3,8 @@
 using System.Windows.Controls;
 
 /// <summary>
-///   Логика взаимодействия для errorTemplateSilverlightStyle.xaml
+///     Логика взаимодействия для errorTemplateSilverlightStyle.xaml
 /// </summary>
 public class ErrorTemplateSilverlightStyle : ControlTemplate
 {
-    
 }

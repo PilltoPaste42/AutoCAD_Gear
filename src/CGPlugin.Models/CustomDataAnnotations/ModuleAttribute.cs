@@ -3,7 +3,7 @@
 using System.ComponentModel.DataAnnotations;
 
 /// <summary>
-///   Настройка валидации значения модуля шестерни
+///     Настройка валидации значения модуля шестерни
 /// </summary>
 public class ModuleAttribute : ValidationAttribute
 {
@@ -12,23 +12,20 @@ public class ModuleAttribute : ValidationAttribute
         if (value is null)
             return new ValidationResult(ErrorMessage);
 
-        var gearModel = (CitroenGearModel) validationContext.ObjectInstance;
+        var gearModel = (CitroenGearModel)validationContext.ObjectInstance;
 
-        var uintVal = (uint) value;
+        var uintVal = (uint)value;
 
         uint module = 0;
-        if (gearModel.TeethCount != 0)
-        {
-            module = gearModel.Diameter / gearModel.TeethCount;
-        }
+        if (gearModel.TeethCount != 0) module = gearModel.Diameter / gearModel.TeethCount;
 
         if (uintVal == 0)
-        {
-            return new ValidationResult($"The field {validationContext.DisplayName} must not be zero.");
-        }
+            return new ValidationResult(
+                $"The field {validationContext.DisplayName} must not be zero.");
 
         if (uintVal != module)
-            return new ValidationResult($"The field {validationContext.DisplayName} must be {module}.");
+            return new ValidationResult(
+                $"The field {validationContext.DisplayName} must be {module}.");
 
         return ValidationResult.Success;
     }

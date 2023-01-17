@@ -10,11 +10,11 @@ using CGPlugin.Services.Interfaces;
 /// </summary>
 public class DisplayMessageService : IMessageService
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public void Show(string header, string text, MessageType type)
     {
         MessageBoxIcon icon = new();
-        MessageBoxButtons buttons = MessageBoxButtons.OK;
+        var buttons = MessageBoxButtons.OK;
 
         switch (type)
         {

@@ -9,6 +9,8 @@ using Inventor;
 /// </summary>
 public static class InventorWrapper
 {
+    private static Application? _app;
+
     /// <summary>
     ///     Получение ссылки на экземпляр приложения Autodesk Inventor
     /// </summary>
@@ -16,13 +18,10 @@ public static class InventorWrapper
     ///     Ссылка на экземпляр Inventor.Application
     /// </returns>
     /// <exception cref="ApplicationException"></exception>
-    public static Application Connect() 
+    public static Application Connect()
     {
-        if (_app != null)
-        {
-            return _app;
-        }
-        
+        if (_app != null) return _app;
+
         try
         {
             var applicationType = Type.GetTypeFromProgID("Inventor.Application");
@@ -36,6 +35,4 @@ public static class InventorWrapper
 
         return _app;
     }
-
-    private static Application? _app;
 }

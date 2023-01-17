@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 
 /// <summary>
-///   Настройка ограничения абсолютного численного значения для поля данных
+///     Настройка ограничения абсолютного численного значения для поля данных
 /// </summary>
 public class AbsoluteRangeAttribute : ValidationAttribute
 {
@@ -22,7 +22,7 @@ public class AbsoluteRangeAttribute : ValidationAttribute
         if (value == null)
             return false;
 
-        var absVal = Math.Abs((int) value);
+        var absVal = Math.Abs((int)value);
 
         return absVal >= Minimum && absVal <= Maximum;
     }

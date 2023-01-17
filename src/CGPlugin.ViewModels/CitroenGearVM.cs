@@ -15,7 +15,7 @@ using CGPlugin.Services.Interfaces;
 using CommunityToolkit.Mvvm.Input;
 
 /// <summary>
-///   ViewModel для работы с данными из MainWindow
+///     ViewModel для работы с данными из MainWindow
 /// </summary>
 public class CitroenGearVM : ValidationBase
 {
@@ -52,10 +52,7 @@ public class CitroenGearVM : ValidationBase
     {
         get
         {
-            if (TeethCount == 0)
-            {
-                return 0;
-            }
+            if (TeethCount == 0) return 0;
 
             return Diameter / TeethCount;
         }
@@ -139,9 +136,7 @@ public class CitroenGearVM : ValidationBase
             _validationErrors.Add(propertyName, new List<string>());
             foreach (var validationResult in validationResults.Where(validationResult =>
                          validationResult.ErrorMessage != null))
-            {
                 _validationErrors[propertyName].Add(validationResult.ErrorMessage);
-            }
         }
 
         OnErrorsChanged(propertyName);
