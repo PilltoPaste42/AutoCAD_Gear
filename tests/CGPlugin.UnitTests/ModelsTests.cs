@@ -3,8 +3,12 @@ namespace CGPlugin.UnitTests;
 using System.ComponentModel.DataAnnotations;
 
 using CGPlugin.Models;
+
 using NUnit.Framework;
 
+/// <summary>
+///     unit-тестирование CitroenGearModel
+/// </summary>
 public class CitroenGearModelTests
 {
     private CitroenGearModel _model;
@@ -88,6 +92,7 @@ public class CitroenGearModelTests
 
         Assert.IsFalse(result);
     }
+
     [TestCase((uint)10, (uint)100)]
     [TestCase((uint)1, (uint)2)]
     public void Try_Valid_TeethCount_ReturnTrue(uint teethCount, uint diameter)
@@ -109,7 +114,7 @@ public class CitroenGearModelTests
 
         Assert.IsFalse(result);
     }
-    
+
     [TestCase((uint)0, (uint)100, (uint)100)]
     [TestCase((uint)1, (uint)0, (uint)0)]
     public void Try_Invalid_Module_ReturnFalse(uint module, uint teethCount, uint diameter)

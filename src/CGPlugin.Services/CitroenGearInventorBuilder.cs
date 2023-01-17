@@ -30,6 +30,9 @@ public class CitroenGearInventorBuilder
         _gear = gear;
     }
 
+    /// <summary>
+    ///     Запуск построения модели
+    /// </summary>
     public void Build()
     {
         CreateDocument();
@@ -40,6 +43,9 @@ public class CitroenGearInventorBuilder
         CreateExtra();
     }
 
+    /// <summary>
+    ///     Создание документа для модели в Autodesk Inventor
+    /// </summary>
     private void CreateDocument()
     {
         _app = InventorWrapper.Connect();
@@ -56,6 +62,9 @@ public class CitroenGearInventorBuilder
         _partDef = _doc.ComponentDefinition;
     }
 
+    /// <summary>
+    ///     Реализация дополнительных действий в среде Inventor
+    /// </summary>
     private void CreateExtra()
     {
         var camera = _app.ActiveView.Camera;
@@ -70,6 +79,9 @@ public class CitroenGearInventorBuilder
         _doc.Update2();
     }
 
+    /// <summary>
+    ///     Создание тела модели шестерни
+    /// </summary>
     private void CreateGearBody()
     {
         var dim = (double)(_gear.Module * (_gear.TeethCount + 2)) / 2 / 10;
@@ -113,6 +125,9 @@ public class CitroenGearInventorBuilder
         return _geom.CreatePoint2d(x, y);
     }
 
+    /// <summary>
+    ///     Создает зубья шестерни на теле модели
+    /// </summary>
     private void CreateTeeth()
     {
         var loftDefinition = _partDef.Features.LoftFeatures
@@ -129,6 +144,9 @@ public class CitroenGearInventorBuilder
             _partDef.Features.CircularPatternFeatures.AddByDefinition(circularDefinition);
     }
 
+    /// <summary>
+    ///     Дублирует тело шестерни зеркально для получения Шевронной шестерни
+    /// </summary>
     private void DuplicateGear()
     {
         var surfaceCollection = _app.TransientObjects.CreateObjectCollection();
@@ -139,6 +157,9 @@ public class CitroenGearInventorBuilder
         _partDef.Features.MirrorFeatures.AddByDefinition(mirrorDefinition);
     }
 
+    /// <summary>
+    ///     Создание эскизов описывающих профиль зуба
+    /// </summary>
     private void CreateTeethProfile()
     {
         var bottomSketch = CreateNewSketch(3);
@@ -151,6 +172,11 @@ public class CitroenGearInventorBuilder
         _involuteCollection.Add(topSketch.Profiles.AddForSolid());
     }
 
+    /// <summary>
+    ///     Создание профиля зуба на эскизе
+    /// </summary>
+    /// <param name="sketch"> Экземпляр эскиза </param>
+    /// <param name="offsetAngle"> Угол отклонения центра профиля зуба </param>
     private void DrawInvoluteInSketch(PlanarSketch sketch, double offsetAngle = 0)
     {
         const double engagementAngle = 20.0;
