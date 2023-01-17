@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using CGPlugin.Models.CustomDataAnnotations;
 
 /// <summary>
-///   Модель шевронной шестерни
+///     Модель шевронной шестерни
 /// </summary>
 public class CitroenGearModel
 {

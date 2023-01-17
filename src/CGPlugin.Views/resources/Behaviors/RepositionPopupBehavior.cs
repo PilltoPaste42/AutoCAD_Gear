@@ -7,22 +7,23 @@ using System.Windows.Controls.Primitives;
 using Microsoft.Xaml.Behaviors;
 
 /// <summary>
-///   Defines the reposition behavior of a <see cref="Popup" /> control when the window to which it is attached is moved or
-///   resized.
+///     Defines the reposition behavior of a <see cref="Popup" /> control when the window to which it is attached is moved
+///     or
+///     resized.
 /// </summary>
 /// <remarks>
-///   This solution was influenced by the answers provided by
-///   <see href="https://stackoverflow.com/users/262204/nathanaw">NathanAW</see> and
-///   <see href="https://stackoverflow.com/users/718325/jason">Jason</see> to
-///   <see href="https://stackoverflow.com/questions/1600218/how-can-i-move-a-wpf-popup-when-its-anchor-element-moves">this</see>
-///   question.
+///     This solution was influenced by the answers provided by
+///     <see href="https://stackoverflow.com/users/262204/nathanaw">NathanAW</see> and
+///     <see href="https://stackoverflow.com/users/718325/jason">Jason</see> to
+///     <see href="https://stackoverflow.com/questions/1600218/how-can-i-move-a-wpf-popup-when-its-anchor-element-moves">this</see>
+///     question.
 /// </remarks>
 public class RepositionPopupBehavior : Behavior<Popup>
 {
-    #region Protected Methods
+#region Protected Methods
 
     /// <summary>
-    ///   Called after the behavior is attached to an <see cref="Behavior.AssociatedObject" />.
+    ///     Called after the behavior is attached to an <see cref="Behavior.AssociatedObject" />.
     /// </summary>
     protected override void OnAttached()
     {
@@ -42,8 +43,8 @@ public class RepositionPopupBehavior : Behavior<Popup>
     }
 
     /// <summary>
-    ///   Called when the behavior is being detached from its <see cref="Behavior.AssociatedObject" />, but before it has
-    ///   actually occurred.
+    ///     Called when the behavior is being detached from its <see cref="Behavior.AssociatedObject" />, but before it has
+    ///     actually occurred.
     /// </summary>
     protected override void OnDetaching()
     {
@@ -56,18 +57,18 @@ public class RepositionPopupBehavior : Behavior<Popup>
         AssociatedObject.Loaded -= AssociatedObject_Loaded;
     }
 
-    #endregion Protected Methods
+#endregion Protected Methods
 
-    #region Private Methods
+#region Private Methods
 
     /// <summary>
-    ///   Handles the <see cref="Window.LocationChanged" /> routed event which occurs when the window's location changes.
+    ///     Handles the <see cref="Window.LocationChanged" /> routed event which occurs when the window's location changes.
     /// </summary>
     /// <param name="sender">
-    ///   The source of the event.
+    ///     The source of the event.
     /// </param>
     /// <param name="e">
-    ///   An object that contains the event data.
+    ///     An object that contains the event data.
     /// </param>
     private void OnLocationChanged(object sender, EventArgs e)
     {
@@ -77,15 +78,15 @@ public class RepositionPopupBehavior : Behavior<Popup>
     }
 
     /// <summary>
-    ///   Handles the <see cref="Window.SizeChanged" /> routed event which occurs when either then
-    ///   <see cref="Window.ActualHeight" /> or the
-    ///   <see cref="Window.ActualWidth" /> properties change value.
+    ///     Handles the <see cref="Window.SizeChanged" /> routed event which occurs when either then
+    ///     <see cref="Window.ActualHeight" /> or the
+    ///     <see cref="Window.ActualWidth" /> properties change value.
     /// </summary>
     /// <param name="sender">
-    ///   The source of the event.
+    ///     The source of the event.
     /// </param>
     /// <param name="e">
-    ///   An object that contains the event data.
+    ///     An object that contains the event data.
     /// </param>
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
@@ -94,5 +95,5 @@ public class RepositionPopupBehavior : Behavior<Popup>
         AssociatedObject.HorizontalOffset = offset;
     }
 
-    #endregion Private Methods
+#endregion Private Methods
 }

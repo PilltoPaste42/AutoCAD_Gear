@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:CGPlugin.ViewModels;assembly=CGPlugin.ViewModels"
         mc:Ignorable="d"
-        
+
         Title="Citroen Gear"
         Icon="{StaticResource MainIcon}"
-        Height="270" Width="450" 
+        Height="270" Width="450"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner">
 
@@ -55,7 +55,7 @@
                      Text="{Binding Width, 
                             UpdateSourceTrigger=PropertyChanged, 
                             ValidatesOnNotifyDataErrors=True}"
-                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}" />
             <Label Content="Gear diameter (mm): "
                    Grid.Column="0"
                    Grid.Row="1"
@@ -67,8 +67,8 @@
                      VerticalAlignment="Center" Height="18"
                      Text="{Binding Diameter, 
                             UpdateSourceTrigger=PropertyChanged, 
-                            ValidatesOnNotifyDataErrors=True}" 
-                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
+                            ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}" />
 
             <Label Content="Teeth count: "
                    Grid.Column="0"
@@ -81,8 +81,8 @@
                      VerticalAlignment="Center" Height="18"
                      Text="{Binding TeethCount, 
                             UpdateSourceTrigger=PropertyChanged, 
-                            ValidatesOnNotifyDataErrors=True}" 
-                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
+                            ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}" />
             <Label Content="Teeth angle (°): "
                    Grid.Column="0"
                    Grid.Row="3"
@@ -94,8 +94,8 @@
                      VerticalAlignment="Center" Height="18"
                      Text="{Binding TeethAngle, 
                             UpdateSourceTrigger=PropertyChanged, 
-                            ValidatesOnNotifyDataErrors=True}" 
-                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
+                            ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}" />
             <Label Content="Gear module (mm): "
                    Grid.Column="0"
                    Grid.Row="4"
@@ -107,8 +107,8 @@
                      VerticalAlignment="Center" Height="18"
                      Text="{Binding Module, 
                             UpdateSourceTrigger=PropertyChanged, 
-                            ValidatesOnNotifyDataErrors=True}" 
-                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}"/>
+                            ValidatesOnNotifyDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}" />
 
         </Grid>
 
@@ -134,12 +134,12 @@
             <Button x:Name="DefaultButton"
                     Content="Default"
                     Width="75"
-                    Margin="0 0 10 0" 
-                    Command="{Binding SetDefaultGearCommand}"/>
+                    Margin="0 0 10 0"
+                    Command="{Binding SetDefaultGearCommand}" />
             <Button x:Name="BuildButton"
                     Content="Build"
-                    Width="75" 
-                    Command="{Binding BuildGearCommand}"/>
+                    Width="75"
+                    Command="{Binding BuildGearCommand}" />
 
         </WrapPanel>
     </Grid>

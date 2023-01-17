@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 
 /// <summary>
-///   Настройка валидации значения количества зубьев шестерни
+///     Настройка валидации значения количества зубьев шестерни
 /// </summary>
 public class TeethCountAttribute : ValidationAttribute
 {
@@ -13,11 +13,11 @@ public class TeethCountAttribute : ValidationAttribute
         if (value is null)
             return new ValidationResult(ErrorMessage);
 
-        var gearModel = (CitroenGearModel) validationContext.ObjectInstance;
+        var gearModel = (CitroenGearModel)validationContext.ObjectInstance;
 
-        var uintVal = (uint) value;
+        var uintVal = (uint)value;
         var minimum = 0;
-        var maximum = (uint) (0.5 * Math.PI * gearModel.Diameter);
+        var maximum = (uint)(0.5 * Math.PI * gearModel.Diameter);
 
         if (uintVal <= minimum || uintVal > maximum)
             return new ValidationResult(

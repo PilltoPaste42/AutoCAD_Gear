@@ -15,15 +15,15 @@ public class CitroenGearInventorBuilder
     private readonly CitroenGearModel _gear;
     private Application _app;
 
+    private CircularPatternFeature _circularFeature;
+
     private PartDocument _doc;
 
     private TransientGeometry _geom;
 
-    private PartComponentDefinition _partDef;
-
     private ObjectCollection _involuteCollection;
 
-    private CircularPatternFeature _circularFeature;
+    private PartComponentDefinition _partDef;
 
     public CitroenGearInventorBuilder(CitroenGearModel gear)
     {
@@ -45,7 +45,7 @@ public class CitroenGearInventorBuilder
         _app = InventorWrapper.Connect();
         _app.Visible = true;
 
-        _doc = (PartDocument) _app.Documents.Add(DocumentTypeEnum.kPartDocumentObject,
+        _doc = (PartDocument)_app.Documents.Add(DocumentTypeEnum.kPartDocumentObject,
             _app.FileManager.GetTemplateFile
             (DocumentTypeEnum.kPartDocumentObject,
                 SystemOfMeasureEnum.kMetricSystemOfMeasure));
@@ -78,18 +78,19 @@ public class CitroenGearInventorBuilder
         var sketch = new InventorSketchWrapper(CreateNewSketch(3));
         sketch.Center = sketch.AddByProjectingEntity(_partDef.WorkPoints[1]) as SketchPoint;
         sketch.AddCircle(sketch.Center, dim);
-        
+
         var profile = sketch.Profiles.AddForSolid();
 
         var extrudeDefinition = _partDef.Features.ExtrudeFeatures
             .CreateExtrudeDefinition(profile, PartFeatureOperationEnum.kJoinOperation);
-        extrudeDefinition.SetDistanceExtent(width, PartFeatureExtentDirectionEnum.kPositiveExtentDirection);
+        extrudeDefinition.SetDistanceExtent(width,
+            PartFeatureExtentDirectionEnum.kPositiveExtentDirection);
 
         _partDef.Features.ExtrudeFeatures.Add(extrudeDefinition);
     }
 
     /// <summary>
-    ///   Создает новый эскиз на рабочей плоскости.
+    ///     Создает новый эскиз на рабочей плоскости.
     /// </summary>
     /// <param name="n">1 - ZY; 2 - ZX; 3 - XY.</param>
     /// <param name="offset">Расстояние от поверхности.</param>
@@ -117,29 +118,33 @@ public class CitroenGearInventorBuilder
         var loftDefinition = _partDef.Features.LoftFeatures
             .CreateLoftDefinition(_involuteCollection, PartFeatureOperationEnum.kCutOperation);
         var loftFeature = _partDef.Features.LoftFeatures.Add(loftDefinition);
-        
+
         var loftFeatureCollection = _app.TransientObjects.CreateObjectCollection();
         loftFeatureCollection.Add(loftFeature);
 
         var circularDefinition = _partDef.Features.CircularPatternFeatures
-            .CreateDefinition(loftFeatureCollection, _partDef.WorkAxes[3], true, _gear.TeethCount, 2 * Math.PI);
-        _circularFeature = _partDef.Features.CircularPatternFeatures.AddByDefinition(circularDefinition);
+            .CreateDefinition(loftFeatureCollection, _partDef.WorkAxes[3], true, _gear.TeethCount,
+                2 * Math.PI);
+        _circularFeature =
+            _partDef.Features.CircularPatternFeatures.AddByDefinition(circularDefinition);
     }
 
     private void DuplicateGear()
     {
         var surfaceCollection = _app.TransientObjects.CreateObjectCollection();
         surfaceCollection.Add(_circularFeature.SurfaceBodies[1]);
-        var mirrorDefinition = _partDef.Features.MirrorFeatures.CreateDefinition(surfaceCollection, _partDef.WorkPlanes[3]);
+        var mirrorDefinition =
+            _partDef.Features.MirrorFeatures.CreateDefinition(surfaceCollection,
+                _partDef.WorkPlanes[3]);
         _partDef.Features.MirrorFeatures.AddByDefinition(mirrorDefinition);
     }
 
     private void CreateTeethProfile()
     {
         var bottomSketch = CreateNewSketch(3);
-        DrawInvoluteInSketch(bottomSketch, 0);
+        DrawInvoluteInSketch(bottomSketch);
         var topSketch = CreateNewSketch(3, (double)_gear.Width / 2 / 10);
-        DrawInvoluteInSketch(topSketch, (double)_gear.TeethAngle);
+        DrawInvoluteInSketch(topSketch, _gear.TeethAngle);
 
         _involuteCollection = _app.TransientObjects.CreateObjectCollection();
         _involuteCollection.Add(bottomSketch.Profiles.AddForSolid());
@@ -151,8 +156,8 @@ public class CitroenGearInventorBuilder
         const double engagementAngle = 20.0;
         var radii = new Dictionary<string, double>
         {
-            { "pitch", (double) _gear.Diameter / 2 / 10 },
-            { "outside", (double) (_gear.Module * (_gear.TeethCount + 2)) / 2 / 10 },
+            { "pitch", (double)_gear.Diameter / 2 / 10 },
+            { "outside", (double)(_gear.Module * (_gear.TeethCount + 2)) / 2 / 10 },
             { "root", _gear.Module * (_gear.TeethCount - 2.5) / 2 / 10 }
         };
 
@@ -288,10 +293,6 @@ public class CitroenGearInventorBuilder
         sk.AddCoincidentCon(involuteArk2.StartSketchPoint, circles["root"]);
         sk.AddPerpendicularCon(involuteLine1, circles["root"]);
 
-        //var outLine1 = sk
-        //    .AddLine(involuteArk1.StartSketchPoint, CreatePoint(0, radii["outside"] + 3));
-        //sk.AddPerpendicularCon(outLine1, circles["outside"]);
-
         var involuteArk3 =
             sk.AddArc(
                 sk.Center,
@@ -335,18 +336,15 @@ public class CitroenGearInventorBuilder
         sk.AddSymmetryCon(involuteArk6, involuteArk1, construct);
 
         var outArk = sk.AddArc(
-            construct.EndSketchPoint, 
-            involuteArk6.EndSketchPoint, 
+            construct.EndSketchPoint,
+            involuteArk6.EndSketchPoint,
             involuteArk1.StartSketchPoint, false);
 
         // Удаление вспомогательной геометрии
 
         construct.Delete();
         vertical.Delete();
-        foreach (var sketchCircle in circles)
-        {
-            sketchCircle.Value.Delete();
-        }
+        foreach (var sketchCircle in circles) sketchCircle.Value.Delete();
 
 
         sk.Solve();
