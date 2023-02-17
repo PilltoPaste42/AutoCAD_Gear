@@ -13,7 +13,7 @@
         WindowStartupLocation="CenterOwner">
 
     <Window.DataContext>
-        <viewModels:CitroenGearVM />
+        <viewModels:MainViewModel />
     </Window.DataContext>
 
     <Grid Margin="5">

@@ -12,7 +12,7 @@ public class ModuleAttribute : ValidationAttribute
         if (value is null)
             return new ValidationResult(ErrorMessage);
 
-        var gearModel = (CitroenGearModel)validationContext.ObjectInstance;
+        var gearModel = (HelicalGearModel)validationContext.ObjectInstance;
 
         var uintVal = (uint)value;
 

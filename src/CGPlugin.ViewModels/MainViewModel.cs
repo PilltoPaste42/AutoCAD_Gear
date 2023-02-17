@@ -17,15 +17,15 @@ using CommunityToolkit.Mvvm.Input;
 /// <summary>
 ///     ViewModel для работы с данными из MainWindow
 /// </summary>
-public class CitroenGearVM : ValidationBase
+public class MainViewModel : ValidationBase
 {
-    private readonly CitroenGearModel _gear;
+    private readonly HelicalGearModel _gear;
     private readonly IMessageService _message;
     private readonly Dictionary<string, ICollection<string>> _validationErrors;
 
-    public CitroenGearVM()
+    public MainViewModel()
     {
-        _gear = new CitroenGearModel();
+        _gear = new HelicalGearModel();
         _validationErrors = new Dictionary<string, ICollection<string>>();
         _message = new DisplayMessageService();
 
@@ -155,7 +155,17 @@ public class CitroenGearVM : ValidationBase
 
         try
         {
-            new CitroenGearInventorBuilder(_gear).Build();
+            var builder = new HelicalGearInventorBuilder();
+            builder.FromModel(_gear);
+
+            if (IsCommonHelicalGear)
+            {
+                builder.BuildHelicalGear();
+            }
+            else
+            {
+                builder.BuildCitroenGear();
+            }
         }
         catch (Exception e)
         {

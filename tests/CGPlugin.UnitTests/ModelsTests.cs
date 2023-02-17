@@ -7,17 +7,17 @@ using CGPlugin.Models;
 using NUnit.Framework;
 
 /// <summary>
-///     unit-тестирование CitroenGearModel
+///     unit-тестирование HelicalGearModel
 /// </summary>
 public class CitroenGearModelTests
 {
-    private CitroenGearModel _model;
+    private HelicalGearModel _model;
     private ValidationContext _validCon;
 
     [SetUp]
     public void Setup()
     {
-        _model = new CitroenGearModel();
+        _model = new HelicalGearModel();
         _validCon = new ValidationContext(_model, null, null);
     }
 
