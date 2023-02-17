@@ -35,6 +35,8 @@ public class CitroenGearVM : ValidationBase
 
     public RelayCommand BuildGearCommand { get; }
 
+    public bool IsCommonHelicalGear { get; set; }
+
     public uint Diameter
     {
         get => _gear.Diameter;

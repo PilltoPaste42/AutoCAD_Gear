@@ -109,7 +109,7 @@
                             UpdateSourceTrigger=PropertyChanged, 
                             ValidatesOnNotifyDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}" />
-
+           
         </Grid>
 
         <Border
@@ -125,10 +125,25 @@
 
         <WrapPanel
             Grid.Column="0"
-            Grid.ColumnSpan="2"
             Grid.Row="1"
             Margin="5"
-            HorizontalAlignment="Right"
+            VerticalAlignment="Center">
+
+            <CheckBox HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding IsCommonHelicalGear}">
+
+            </CheckBox>
+            <Label HorizontalAlignment="Left"
+                   VerticalAlignment="Center">
+                Create common helical gear
+            </Label>
+        </WrapPanel>
+
+        <WrapPanel
+            Grid.Column="1"
+            Grid.Row="1"
+            Margin="5"
             VerticalAlignment="Center">
 
             <Button x:Name="DefaultButton"
