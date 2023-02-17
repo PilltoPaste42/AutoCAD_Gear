@@ -4,6 +4,7 @@
         <ResourceDictionary Source="Resources/Templates/ErrorTemplateSilverlightStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <BitmapImage x:Key="GearImage" UriSource="Resources/Images/CitroenGearExample.png" />
+    <BitmapImage x:Key="CitroenGearImage" UriSource="Resources/Images/CitroenGearExample.png" />
+    <BitmapImage x:Key="HelicalGearImage" UriSource="Resources/Images/HelicalGearExample.png" />
     <BitmapImage x:Key="MainIcon" UriSource="Resources/Images/favicon.ico" />
 </ResourceDictionary>

@@ -13,7 +13,7 @@
         WindowStartupLocation="CenterOwner">
 
     <Window.DataContext>
-        <viewModels:CitroenGearVM />
+        <viewModels:MainViewModel />
     </Window.DataContext>
 
     <Grid Margin="5">
@@ -115,12 +115,21 @@
         <Border
             Grid.Row="0"
             Grid.Column="1"
-            Margin="4"
+            Margin="0"
             BorderThickness="1"
             BorderBrush="#FF000000">
-            <Image
-                Source="{StaticResource GearImage}"
-                Stretch="Fill" />
+            <Image Stretch="Fill" >
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Source" Value="{StaticResource CitroenGearImage}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsChecked, ElementName=Check}" Value="True">
+                                <Setter Property="Source" Value="{StaticResource HelicalGearImage}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
         </Border>
 
         <WrapPanel
@@ -129,10 +138,10 @@
             Margin="5"
             VerticalAlignment="Center">
 
-            <CheckBox HorizontalAlignment="Left"
+            <CheckBox x:Name="Check"
+                      HorizontalAlignment="Left"
                       VerticalAlignment="Center"
                       IsChecked="{Binding IsCommonHelicalGear}">
-
             </CheckBox>
             <Label HorizontalAlignment="Left"
                    VerticalAlignment="Center">
@@ -143,8 +152,9 @@
         <WrapPanel
             Grid.Column="1"
             Grid.Row="1"
-            Margin="5"
-            VerticalAlignment="Center">
+            Margin="0"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left">
 
             <Button x:Name="DefaultButton"
                     Content="Default"
