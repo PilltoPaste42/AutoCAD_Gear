@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 /// <summary>
 ///     Настройка валидации значения модуля шестерни
 /// </summary>
-public class ModuleAttribute : ValidationAttribute
+public class HelicalGearModuleAttribute : ValidationAttribute
 {
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
     {

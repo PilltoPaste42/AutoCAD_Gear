@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 /// <summary>
 ///     Настройка валидации значения количества зубьев шестерни
 /// </summary>
-public class TeethCountAttribute : ValidationAttribute
+public class HelicalGearTeethCountAttribute : ValidationAttribute
 {
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
     {

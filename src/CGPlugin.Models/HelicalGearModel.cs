@@ -14,7 +14,7 @@ public class HelicalGearModel
     public uint Diameter { get; set; }
 
     [Required]
-    [Module]
+    [HelicalGearModule]
     public uint Module { get; set; }
 
     [Required]
@@ -22,7 +22,7 @@ public class HelicalGearModel
     public int TeethAngle { get; set; }
 
     [Required]
-    [TeethCount]
+    [HelicalGearTeethCount]
     public uint TeethCount { get; set; }
 
     [Required]
