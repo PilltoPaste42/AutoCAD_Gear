@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C77BFE99
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CGPlugin.UnitTests", "tests\CGPlugin.UnitTests\CGPlugin.UnitTests.csproj", "{0236923A-D90F-4512-8C8F-BF9CE6015335}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGPlugin.StressTests", "tests\CGPlugin.StressTests\CGPlugin.StressTests.csproj", "{C301348B-91FE-4870-9927-CAA5B472337D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{0236923A-D90F-4512-8C8F-BF9CE6015335}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0236923A-D90F-4512-8C8F-BF9CE6015335}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0236923A-D90F-4512-8C8F-BF9CE6015335}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C301348B-91FE-4870-9927-CAA5B472337D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C301348B-91FE-4870-9927-CAA5B472337D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C301348B-91FE-4870-9927-CAA5B472337D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C301348B-91FE-4870-9927-CAA5B472337D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{8885AF35-16FC-404A-9577-C05EC0ECA93E} = {E259186E-95EF-4EF8-AB5B-72F88B8E730B}
 		{270C5362-8417-4D7C-B27F-75936A543224} = {E259186E-95EF-4EF8-AB5B-72F88B8E730B}
 		{0236923A-D90F-4512-8C8F-BF9CE6015335} = {C77BFE99-4A47-4E2A-A274-DA26FC68B730}
+		{C301348B-91FE-4870-9927-CAA5B472337D} = {C77BFE99-4A47-4E2A-A274-DA26FC68B730}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3583B97-48B4-4E30-887C-447EA0273B79}
