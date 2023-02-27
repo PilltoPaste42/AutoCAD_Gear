@@ -20,7 +20,10 @@ public static class InventorWrapper
     /// <exception cref="ApplicationException"></exception>
     public static Application Connect()
     {
-        if (_app != null) return _app;
+        if (_app != null)
+        {
+            return _app;
+        }
 
         try
         {

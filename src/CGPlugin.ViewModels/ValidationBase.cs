@@ -25,7 +25,9 @@ public abstract class ValidationBase : INotifyPropertyChanged, INotifyDataErrorI
     protected void OnErrorsChanged([CallerMemberName] string propertyName = "")
     {
         if (ErrorsChanged != null)
+        {
             OnErrorsChanged(this, new DataErrorsChangedEventArgs(propertyName));
+        }
     }
 
     protected virtual void OnErrorsChanged(object sender, DataErrorsChangedEventArgs e)

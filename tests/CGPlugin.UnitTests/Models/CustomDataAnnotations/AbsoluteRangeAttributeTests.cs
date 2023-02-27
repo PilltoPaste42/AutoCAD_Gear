@@ -1,7 +1,8 @@
-﻿using CGPlugin.Models.CustomDataAnnotations;
-using NUnit.Framework;
+﻿namespace CGPlugin.UnitTests.Models.CustomDataAnnotations;
 
-namespace CGPlugin.UnitTests.Models.CustomDataAnnotations;
+using CGPlugin.Models.CustomDataAnnotations;
+
+using NUnit.Framework;
 
 /// <summary>
 ///     Unit-тестирование пользовательского атрибута AbsoluteRange
@@ -9,13 +10,13 @@ namespace CGPlugin.UnitTests.Models.CustomDataAnnotations;
 [TestFixture]
 public class AbsoluteRangeAttributeTests
 {
-    private AbsoluteRangeAttribute _attribute;
-
     [SetUp]
     public void Setup()
     {
         _attribute = new AbsoluteRangeAttribute(0, 100);
     }
+
+    private AbsoluteRangeAttribute _attribute;
 
     [TestCase(10)]
     [TestCase(-10)]
@@ -25,7 +26,7 @@ public class AbsoluteRangeAttributeTests
     public void Test_IsValid_ReturnTrue(int value)
     {
         var result = _attribute.IsValid(value);
-        
+
         Assert.IsTrue(result);
     }
 

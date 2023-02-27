@@ -8,10 +8,13 @@ using System.ComponentModel.DataAnnotations;
 /// </summary>
 public class HelicalGearTeethCountAttribute : ValidationAttribute
 {
+    ///<inheritdoc />
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
     {
         if (value is null)
+        {
             return new ValidationResult(ErrorMessage);
+        }
 
         var gearModel = (HelicalGearModel)validationContext.ObjectInstance;
 
@@ -20,8 +23,10 @@ public class HelicalGearTeethCountAttribute : ValidationAttribute
         var maximum = (uint)(0.5 * Math.PI * gearModel.Diameter);
 
         if (uintVal <= minimum || uintVal > maximum)
+        {
             return new ValidationResult(
                 $"Field {validationContext.DisplayName} must be between {minimum} and {maximum}.");
+        }
 
         return ValidationResult.Success;
     }

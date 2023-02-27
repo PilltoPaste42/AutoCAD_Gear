@@ -54,7 +54,10 @@ public class MainViewModel : ValidationBase
     {
         get
         {
-            if (TeethCount == 0) return 0;
+            if (TeethCount == 0)
+            {
+                return 0;
+            }
 
             return Diameter / TeethCount;
         }
@@ -114,10 +117,15 @@ public class MainViewModel : ValidationBase
 
     public override IEnumerable GetErrors(string? propertyName = "")
     {
-        if (string.IsNullOrEmpty(propertyName)) return _validationErrors;
+        if (string.IsNullOrEmpty(propertyName))
+        {
+            return _validationErrors;
+        }
 
         if (!_validationErrors.ContainsKey(propertyName))
+        {
             return Enumerable.Empty<string>();
+        }
 
         return _validationErrors[propertyName];
     }
@@ -125,7 +133,9 @@ public class MainViewModel : ValidationBase
     protected void ValidateModelProperty(object value, [CallerMemberName] string propertyName = "")
     {
         if (_validationErrors.ContainsKey(propertyName))
+        {
             _validationErrors.Remove(propertyName);
+        }
 
         ICollection<ValidationResult> validationResults = new List<ValidationResult>();
         var validationContext = new ValidationContext(_gear, null, null)
@@ -138,7 +148,9 @@ public class MainViewModel : ValidationBase
             _validationErrors.Add(propertyName, new List<string>());
             foreach (var validationResult in validationResults.Where(validationResult =>
                          validationResult.ErrorMessage != null))
+            {
                 _validationErrors[propertyName].Add(validationResult.ErrorMessage);
+            }
         }
 
         OnErrorsChanged(propertyName);

@@ -12,15 +12,15 @@ using NUnit.Framework;
 [TestFixture]
 public class HelicalGearModelTests
 {
-    private HelicalGearModel _model;
-    private ValidationContext _validCon;
-
     [SetUp]
     public void Setup()
     {
         _model = new HelicalGearModel();
         _validCon = new ValidationContext(_model, null, null);
     }
+
+    private HelicalGearModel _model;
+    private ValidationContext _validCon;
 
     [TestCase((uint)1000)]
     [TestCase((uint)5)]
@@ -53,10 +53,7 @@ public class HelicalGearModelTests
         var result = Validator.TryValidateProperty(value, _validCon, null);
 
         Assert.IsTrue(result);
-        Assert.DoesNotThrow(() =>
-        {
-            _model.Width = value;
-        });
+        Assert.DoesNotThrow(() => { _model.Width = value; });
     }
 
     [TestCase((uint)0)]
@@ -68,10 +65,7 @@ public class HelicalGearModelTests
         var result = Validator.TryValidateProperty(value, _validCon, null);
 
         Assert.IsFalse(result);
-        Assert.DoesNotThrow(() =>
-        {
-            _model.Width = value;
-        });
+        Assert.DoesNotThrow(() => { _model.Width = value; });
     }
 
     [TestCase(30)]
@@ -83,14 +77,11 @@ public class HelicalGearModelTests
     public void Test_Valid_TeethAngle_ReturnTrue(int value)
     {
         _validCon.MemberName = "TeethAngle";
-        
+
         var result = Validator.TryValidateProperty(value, _validCon, null);
-       
+
         Assert.IsTrue(result);
-        Assert.DoesNotThrow(() =>
-        {
-            _model.TeethAngle = value;
-        });
+        Assert.DoesNotThrow(() => { _model.TeethAngle = value; });
     }
 
     [TestCase(0)]
@@ -105,10 +96,7 @@ public class HelicalGearModelTests
         var result = Validator.TryValidateProperty(value, _validCon, null);
 
         Assert.IsFalse(result);
-        Assert.DoesNotThrow(() =>
-        {
-            _model.TeethAngle = value;
-        });
+        Assert.DoesNotThrow(() => { _model.TeethAngle = value; });
     }
 
     [TestCase((uint)10, (uint)100)]

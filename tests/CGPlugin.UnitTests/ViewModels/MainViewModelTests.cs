@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿namespace CGPlugin.UnitTests.ViewModels;
 
-namespace CGPlugin.UnitTests.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
+
+using CGPlugin.ViewModels;
 
 using NUnit.Framework;
-using CGPlugin.ViewModels;
-using System.Linq;
-using System.Collections;
 
 /// <summary>
 ///     unit-тестирование MainViewModel
@@ -15,13 +13,13 @@ using System.Collections;
 [TestFixture]
 public class MainViewModelTests
 {
-    private MainViewModel _vm;
-
     [SetUp]
     public void Setup()
     {
         _vm = new MainViewModel();
     }
+
+    private MainViewModel _vm;
 
     [TestCase]
     public void Test_HasErrors_ReturnTrue()
@@ -53,7 +51,7 @@ public class MainViewModelTests
     [TestCase]
     public void Test_GetErrorsOfExistentProperty_ReturnTrue()
     {
-        _vm.Module = UInt32.MaxValue;
+        _vm.Module = uint.MaxValue;
         var expected = Enumerable.Empty<string>();
         var actual = _vm.GetErrors("Module");
 
