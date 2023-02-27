@@ -17,15 +17,15 @@ using CommunityToolkit.Mvvm.Input;
 /// <summary>
 ///     ViewModel для работы с данными из MainWindow
 /// </summary>
-public class CitroenGearVM : ValidationBase
+public class MainViewModel : ValidationBase
 {
-    private readonly CitroenGearModel _gear;
+    private readonly HelicalGearModel _gear;
     private readonly IMessageService _message;
     private readonly Dictionary<string, ICollection<string>> _validationErrors;
 
-    public CitroenGearVM()
+    public MainViewModel()
     {
-        _gear = new CitroenGearModel();
+        _gear = new HelicalGearModel();
         _validationErrors = new Dictionary<string, ICollection<string>>();
         _message = new DisplayMessageService();
 
@@ -34,6 +34,8 @@ public class CitroenGearVM : ValidationBase
     }
 
     public RelayCommand BuildGearCommand { get; }
+
+    public bool IsCommonHelicalGear { get; set; }
 
     public uint Diameter
     {
@@ -52,7 +54,10 @@ public class CitroenGearVM : ValidationBase
     {
         get
         {
-            if (TeethCount == 0) return 0;
+            if (TeethCount == 0)
+            {
+                return 0;
+            }
 
             return Diameter / TeethCount;
         }
@@ -112,10 +117,15 @@ public class CitroenGearVM : ValidationBase
 
     public override IEnumerable GetErrors(string? propertyName = "")
     {
-        if (string.IsNullOrEmpty(propertyName)) return _validationErrors;
+        if (string.IsNullOrEmpty(propertyName))
+        {
+            return _validationErrors;
+        }
 
         if (!_validationErrors.ContainsKey(propertyName))
+        {
             return Enumerable.Empty<string>();
+        }
 
         return _validationErrors[propertyName];
     }
@@ -123,7 +133,9 @@ public class CitroenGearVM : ValidationBase
     protected void ValidateModelProperty(object value, [CallerMemberName] string propertyName = "")
     {
         if (_validationErrors.ContainsKey(propertyName))
+        {
             _validationErrors.Remove(propertyName);
+        }
 
         ICollection<ValidationResult> validationResults = new List<ValidationResult>();
         var validationContext = new ValidationContext(_gear, null, null)
@@ -136,7 +148,9 @@ public class CitroenGearVM : ValidationBase
             _validationErrors.Add(propertyName, new List<string>());
             foreach (var validationResult in validationResults.Where(validationResult =>
                          validationResult.ErrorMessage != null))
+            {
                 _validationErrors[propertyName].Add(validationResult.ErrorMessage);
+            }
         }
 
         OnErrorsChanged(propertyName);
@@ -153,7 +167,17 @@ public class CitroenGearVM : ValidationBase
 
         try
         {
-            new CitroenGearInventorBuilder(_gear).Build();
+            var builder = new HelicalGearInventorBuilder();
+            builder.FromModel(_gear);
+
+            if (IsCommonHelicalGear)
+            {
+                builder.BuildHelicalGear();
+            }
+            else
+            {
+                builder.BuildCitroenGear();
+            }
         }
         catch (Exception e)
         {

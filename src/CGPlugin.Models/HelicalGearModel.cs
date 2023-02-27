@@ -5,16 +5,16 @@ using System.ComponentModel.DataAnnotations;
 using CGPlugin.Models.CustomDataAnnotations;
 
 /// <summary>
-///     Модель шевронной шестерни
+///     Модель для косозубых шестерней
 /// </summary>
-public class CitroenGearModel
+public class HelicalGearModel
 {
     [Required]
     [Range(5, 5000)]
     public uint Diameter { get; set; }
 
     [Required]
-    [Module]
+    [HelicalGearModule]
     public uint Module { get; set; }
 
     [Required]
@@ -22,7 +22,7 @@ public class CitroenGearModel
     public int TeethAngle { get; set; }
 
     [Required]
-    [TeethCount]
+    [HelicalGearTeethCount]
     public uint TeethCount { get; set; }
 
     [Required]
