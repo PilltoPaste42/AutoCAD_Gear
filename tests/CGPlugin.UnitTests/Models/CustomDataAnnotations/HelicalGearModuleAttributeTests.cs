@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using CGPlugin.Models;
-using NUnit.Framework;
-using CGPlugin.Models.CustomDataAnnotations;
-using System.Linq;
+﻿namespace CGPlugin.UnitTests.Models.CustomDataAnnotations;
 
-namespace CGPlugin.UnitTests.Models.CustomDataAnnotations;
+using System.ComponentModel.DataAnnotations;
+
+using CGPlugin.Models;
+using CGPlugin.Models.CustomDataAnnotations;
+
+using NUnit.Framework;
 
 /// <summary>
 ///     Unit-тестирование пользовательского атрибута HelicalGearModule
@@ -12,10 +13,6 @@ namespace CGPlugin.UnitTests.Models.CustomDataAnnotations;
 [TestFixture]
 public class HelicalGearModuleAttributeTests
 {
-    private HelicalGearModuleAttribute _attribute;
-    private HelicalGearModel _model;
-    private ValidationContext _context;
-
     [SetUp]
     public void Setup()
     {
@@ -23,6 +20,10 @@ public class HelicalGearModuleAttributeTests
         _model = new HelicalGearModel();
         _context = new ValidationContext(_model);
     }
+
+    private HelicalGearModuleAttribute _attribute;
+    private HelicalGearModel _model;
+    private ValidationContext _context;
 
     [TestCase(null, (uint)10, (uint)10)]
     [TestCase((uint)0, (uint)10, (uint)10)]
@@ -34,7 +35,7 @@ public class HelicalGearModuleAttributeTests
 
         var expected = ValidationResult.Success;
         var actual = _attribute.GetValidationResult(module, _context);
-        
+
         Assert.AreNotEqual(expected, actual);
     }
 

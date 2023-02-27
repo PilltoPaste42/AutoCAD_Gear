@@ -1,9 +1,11 @@
-﻿using CGPlugin.Models.CustomDataAnnotations;
-using CGPlugin.Models;
-using NUnit.Framework;
+﻿namespace CGPlugin.UnitTests.Models.CustomDataAnnotations;
+
 using System.ComponentModel.DataAnnotations;
 
-namespace CGPlugin.UnitTests.Models.CustomDataAnnotations;
+using CGPlugin.Models;
+using CGPlugin.Models.CustomDataAnnotations;
+
+using NUnit.Framework;
 
 /// <summary>
 ///     Unit-тестирование пользовательского атрибута HelicalGearTeethCountAttribute
@@ -11,10 +13,6 @@ namespace CGPlugin.UnitTests.Models.CustomDataAnnotations;
 [TestFixture]
 public class HelicalGearTeethCountAttributeTests
 {
-    private HelicalGearTeethCountAttribute _attribute;
-    private HelicalGearModel _model;
-    private ValidationContext _context;
-
     [SetUp]
     public void Setup()
     {
@@ -22,6 +20,10 @@ public class HelicalGearTeethCountAttributeTests
         _model = new HelicalGearModel();
         _context = new ValidationContext(_model);
     }
+
+    private HelicalGearTeethCountAttribute _attribute;
+    private HelicalGearModel _model;
+    private ValidationContext _context;
 
     [TestCase(null, (uint)10)]
     [TestCase((uint)0, (uint)10)]

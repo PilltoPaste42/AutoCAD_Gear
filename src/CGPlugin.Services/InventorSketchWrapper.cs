@@ -154,7 +154,10 @@ public class InventorSketchWrapper
 
     public void DeleteFromSketch(IEnumerable objects)
     {
-        foreach (SketchEntity o in objects) o.Delete();
+        foreach (SketchEntity o in objects)
+        {
+            o.Delete();
+        }
     }
 
     public void Solve()

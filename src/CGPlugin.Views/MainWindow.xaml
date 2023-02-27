@@ -109,7 +109,7 @@
                             UpdateSourceTrigger=PropertyChanged, 
                             ValidatesOnNotifyDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource ErrorTemplateSilverlightStyle}" />
-           
+
         </Grid>
 
         <Border
@@ -118,13 +118,13 @@
             Margin="0"
             BorderThickness="1"
             BorderBrush="#FF000000">
-            <Image Stretch="Fill" >
+            <Image Stretch="Fill">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
-                        <Setter Property="Source" Value="{StaticResource CitroenGearImage}"/>
+                        <Setter Property="Source" Value="{StaticResource CitroenGearImage}" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsChecked, ElementName=Check}" Value="True">
-                                <Setter Property="Source" Value="{StaticResource HelicalGearImage}"/>
+                                <Setter Property="Source" Value="{StaticResource HelicalGearImage}" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -141,8 +141,7 @@
             <CheckBox x:Name="Check"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Center"
-                      IsChecked="{Binding IsCommonHelicalGear}">
-            </CheckBox>
+                      IsChecked="{Binding IsCommonHelicalGear}" />
             <Label HorizontalAlignment="Left"
                    VerticalAlignment="Center">
                 Create common helical gear

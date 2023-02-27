@@ -1,12 +1,13 @@
-﻿using System;
+﻿namespace CGPlugin.StressTests;
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Management;
 using System.Text;
+
 using CGPlugin.Models;
 using CGPlugin.Services;
-
-namespace CGPlugin.StressTests;
 
 /// <summary>
 ///     Нагрузочное тестирование основной логики CGPlugin
@@ -31,11 +32,21 @@ public static class MainStressTest
         var builder = new HelicalGearInventorBuilder();
         builder.FromModel(model);
 
-        if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
-        if (File.Exists(fullFilePath)) File.Delete(fullFilePath);
+        if (!Directory.Exists(filePath))
+        {
+            Directory.CreateDirectory(filePath);
+        }
+
+        if (File.Exists(fullFilePath))
+        {
+            File.Delete(fullFilePath);
+        }
 
         var file = File.OpenWrite(filePath + "\\" + fileName);
-        if (!file.CanWrite) throw new Exception();
+        if (!file.CanWrite)
+        {
+            throw new Exception();
+        }
 
         var writer = new StreamWriter(file);
         writer.AutoFlush = true;

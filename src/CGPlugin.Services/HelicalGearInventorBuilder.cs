@@ -194,7 +194,11 @@ public class HelicalGearInventorBuilder
         DrawInvoluteInSketch(bottomSketch);
         var topSketch = CreateNewSketch(3, GearWidth / 10);
         var d = 0.0;
-        if (Gear.TeethAngle < 0) d = 360;
+        if (Gear.TeethAngle < 0)
+        {
+            d = 360;
+        }
+
         DrawInvoluteInSketch(topSketch, Gear.TeethAngle + d);
 
         InvoluteCollection = App.TransientObjects.CreateObjectCollection();
@@ -407,7 +411,10 @@ public class HelicalGearInventorBuilder
 
         construct.Delete();
         vertical.Delete();
-        foreach (var sketchCircle in circles) sketchCircle.Value.Delete();
+        foreach (var sketchCircle in circles)
+        {
+            sketchCircle.Value.Delete();
+        }
 
         sk.Solve();
     }

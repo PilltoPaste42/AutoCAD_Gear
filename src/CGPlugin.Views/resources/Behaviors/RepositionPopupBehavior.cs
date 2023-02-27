@@ -20,7 +20,7 @@ using Microsoft.Xaml.Behaviors;
 /// </remarks>
 public class RepositionPopupBehavior : Behavior<Popup>
 {
-#region Protected Methods
+    #region Protected Methods
 
     /// <summary>
     ///     Called after the behavior is attached to an <see cref="Behavior.AssociatedObject" />.
@@ -30,7 +30,10 @@ public class RepositionPopupBehavior : Behavior<Popup>
         base.OnAttached();
         var window = Window.GetWindow(AssociatedObject.PlacementTarget);
         if (window == null)
+        {
             return;
+        }
+
         window.LocationChanged += OnLocationChanged;
         window.SizeChanged += OnSizeChanged;
         AssociatedObject.Loaded += AssociatedObject_Loaded;
@@ -51,15 +54,18 @@ public class RepositionPopupBehavior : Behavior<Popup>
         base.OnDetaching();
         var window = Window.GetWindow(AssociatedObject.PlacementTarget);
         if (window == null)
+        {
             return;
+        }
+
         window.LocationChanged -= OnLocationChanged;
         window.SizeChanged -= OnSizeChanged;
         AssociatedObject.Loaded -= AssociatedObject_Loaded;
     }
 
-#endregion Protected Methods
+    #endregion Protected Methods
 
-#region Private Methods
+    #region Private Methods
 
     /// <summary>
     ///     Handles the <see cref="Window.LocationChanged" /> routed event which occurs when the window's location changes.
@@ -95,5 +101,5 @@ public class RepositionPopupBehavior : Behavior<Popup>
         AssociatedObject.HorizontalOffset = offset;
     }
 
-#endregion Private Methods
+    #endregion Private Methods
 }
