@@ -8,9 +8,6 @@ using System.ComponentModel.DataAnnotations;
 /// </summary>
 public class AbsoluteRangeAttribute : ValidationAttribute
 {
-    /// <summary>
-    ///     
-    /// </summary>
     /// <param name="minimum"> Абсолютный минимум</param>
     /// <param name="maximum"> Абсолютный максимум</param>
     public AbsoluteRangeAttribute(int minimum, int maximum)

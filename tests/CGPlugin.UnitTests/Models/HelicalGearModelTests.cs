@@ -7,7 +7,7 @@ using CGPlugin.Models;
 using NUnit.Framework;
 
 /// <summary>
-///     unit-тестирование HelicalGearModel
+///     модульное тестирование модели HelicalGearModel
 /// </summary>
 [TestFixture]
 public class HelicalGearModelTests
