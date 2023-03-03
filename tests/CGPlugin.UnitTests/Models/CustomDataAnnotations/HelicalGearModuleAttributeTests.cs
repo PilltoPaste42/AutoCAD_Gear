@@ -8,7 +8,7 @@ using CGPlugin.Models.CustomDataAnnotations;
 using NUnit.Framework;
 
 /// <summary>
-///     Unit-тестирование пользовательского атрибута HelicalGearModule
+///     Модульное тестирование пользовательского атрибута HelicalGearModule
 /// </summary>
 [TestFixture]
 public class HelicalGearModuleAttributeTests

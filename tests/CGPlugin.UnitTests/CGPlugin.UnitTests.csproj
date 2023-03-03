@@ -28,8 +28,4 @@
     <ProjectReference Include="..\..\src\CGPlugin.ViewModels\CGPlugin.ViewModels.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>
