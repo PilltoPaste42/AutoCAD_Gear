@@ -130,7 +130,7 @@ public class HelicalGearInventorBuilder
     }
 
     /// <summary>
-    ///     Создает новый эскиз на рабочей плоскости.
+    ///     Создание нового эскиза на рабочей плоскости.
     /// </summary>
     /// <param name="n">1 - ZY; 2 - ZX; 3 - XY.</param>
     /// <param name="offset">Расстояние от поверхности.</param>
@@ -148,13 +148,19 @@ public class HelicalGearInventorBuilder
         return sketch;
     }
 
+    /// <summary>
+    ///     Создание точки в TransientGeometry
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
     private Point2d CreatePoint(double x = 0, double y = 0)
     {
         return Geom.CreatePoint2d(x, y);
     }
 
     /// <summary>
-    ///     Создает зубья шестерни на теле модели
+    ///     Создание зубьев шестерни на теле модели
     /// </summary>
     private void CreateTeeth()
     {
@@ -173,7 +179,7 @@ public class HelicalGearInventorBuilder
     }
 
     /// <summary>
-    ///     Дублирует тело шестерни зеркально для получения Шевронной шестерни
+    ///     Дублирование тела шестерни зеркально для получения Шевронной шестерни
     /// </summary>
     private void DuplicateGear()
     {

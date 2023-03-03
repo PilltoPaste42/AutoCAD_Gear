@@ -33,10 +33,19 @@ public class MainViewModel : ValidationBase
         SetDefaultGearCommand = new RelayCommand(SetDefaultGear);
     }
 
+    /// <summary>
+    ///     Команда построения шестерни
+    /// </summary>
     public RelayCommand BuildGearCommand { get; }
 
+    /// <summary>
+    ///     Флаг для построения обычной косозубой шестерни
+    /// </summary>
     public bool IsCommonHelicalGear { get; set; }
 
+    /// <summary>
+    ///     Диаметр шестерни
+    /// </summary>
     public uint Diameter
     {
         get => _gear.Diameter;
@@ -50,6 +59,9 @@ public class MainViewModel : ValidationBase
         }
     }
 
+    /// <summary>
+    ///     Получение значения модуля шестерни методом прямого расчета
+    /// </summary>
     private uint GetModule
     {
         get
@@ -63,11 +75,18 @@ public class MainViewModel : ValidationBase
         }
     }
 
+    /// <inheritdoc chref="base" />
     public override bool HasErrors => !ModelIsValid;
 
+    /// <summary>
+    ///     Проверка валидности модели шестерни
+    /// </summary>
     public bool ModelIsValid =>
         Validator.TryValidateObject(_gear, new ValidationContext(_gear, null, null), null, true);
 
+    /// <summary>
+    ///     Модуль шестерни
+    /// </summary>
     public uint Module
     {
         get => _gear.Module;
@@ -79,6 +98,9 @@ public class MainViewModel : ValidationBase
         }
     }
 
+    /// <summary>
+    ///     Команда установки стандартных значений шестерни
+    /// </summary>
     public RelayCommand SetDefaultGearCommand { get; }
 
     public int TeethAngle
@@ -92,6 +114,9 @@ public class MainViewModel : ValidationBase
         }
     }
 
+    /// <summary>
+    ///     Количество зубьев шестерни
+    /// </summary>
     public uint TeethCount
     {
         get => _gear.TeethCount;
@@ -104,6 +129,9 @@ public class MainViewModel : ValidationBase
         }
     }
 
+    /// <summary>
+    ///     Ширина шестерни
+    /// </summary>
     public uint Width
     {
         get => _gear.Width;
@@ -115,6 +143,7 @@ public class MainViewModel : ValidationBase
         }
     }
 
+    /// <inheritdoc chref="base" />
     public override IEnumerable GetErrors(string? propertyName = "")
     {
         if (string.IsNullOrEmpty(propertyName))
@@ -130,6 +159,11 @@ public class MainViewModel : ValidationBase
         return _validationErrors[propertyName];
     }
 
+    /// <summary>
+    ///     Валидация параметра модели
+    /// </summary>
+    /// <param name="value">Новое значение параметра</param>
+    /// <param name="propertyName">Имя параметра</param>
     protected void ValidateModelProperty(object value, [CallerMemberName] string propertyName = "")
     {
         if (_validationErrors.ContainsKey(propertyName))
@@ -157,6 +191,9 @@ public class MainViewModel : ValidationBase
         BuildGearCommand.NotifyCanExecuteChanged();
     }
 
+    /// <summary>
+    ///     Построение шестерни в Inventor
+    /// </summary>
     private void BuildCitroenGear()
     {
         if (HasErrors)
@@ -185,6 +222,9 @@ public class MainViewModel : ValidationBase
         }
     }
 
+    /// <summary>
+    ///     Установка стандартных значений шестерни
+    /// </summary>
     private void SetDefaultGear()
     {
         Diameter = 200;
@@ -194,6 +234,10 @@ public class MainViewModel : ValidationBase
         Width = 50;
     }
 
+    /// <summary>
+    ///     Вызов окна сообщения ошибки
+    /// </summary>
+    /// <param name="message">Текст сообщения</param>
     private void ShowErrorMessage(string message)
     {
         const string header = "Error";

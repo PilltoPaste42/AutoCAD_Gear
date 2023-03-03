@@ -5,7 +5,7 @@ using CGPlugin.Models.CustomDataAnnotations;
 using NUnit.Framework;
 
 /// <summary>
-///     Unit-тестирование пользовательского атрибута AbsoluteRange
+///     Модульное тестирование пользовательского атрибута AbsoluteRange
 /// </summary>
 [TestFixture]
 public class AbsoluteRangeAttributeTests

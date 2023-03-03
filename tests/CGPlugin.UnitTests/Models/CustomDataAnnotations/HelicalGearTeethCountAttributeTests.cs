@@ -8,7 +8,7 @@ using CGPlugin.Models.CustomDataAnnotations;
 using NUnit.Framework;
 
 /// <summary>
-///     Unit-тестирование пользовательского атрибута HelicalGearTeethCountAttribute
+///     Модульное тестирование пользовательского атрибута HelicalGearTeethCountAttribute
 /// </summary>
 [TestFixture]
 public class HelicalGearTeethCountAttributeTests
